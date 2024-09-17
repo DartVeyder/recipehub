@@ -11,7 +11,7 @@
             <a href="#" class="btn btn-light btn-sm">'.$receipe['category_name'].'</a>
               <div class="action">
          <a href="#" class="fas fa-edit text-info "></a> 
-         <a href="#" class="fas fa-trash-alt text-danger ml-3"></a> 
+         <a href="?function=recipe&action=delete&id='.$receipe['id'].'" class="fas fa-trash-alt text-danger ml-3"></a> 
 </div>
            
         </div>
@@ -19,7 +19,7 @@
             <h4 class="card-title"> '.$receipe['title'].'</h4>
 
             <p class="card-text">'.$receipe['description'].'</p>
-            <a href="#" class="btn btn-info">Читати</a>
+            <a href="/recipe.php?id='.$receipe['id'].'" class="btn btn-info">Читати</a>
         </div>
         <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
             <div class="views">'.$created_at->format('d.m.Y, H:i').'

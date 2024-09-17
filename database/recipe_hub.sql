@@ -2,9 +2,9 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Хост: mySQL-8.2
--- Час створення: Вер 16 2024 р., 07:21
--- Версія сервера: 8.2.0
+-- Хост: mySQL-8.0
+-- Час створення: Вер 17 2024 р., 12:56
+-- Версія сервера: 8.0.35
 -- Версія PHP: 8.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -93,7 +93,7 @@ CREATE TABLE `recipes` (
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `instructions` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'assets/images/none_image.jpg',
   `category_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   `views` int DEFAULT '0',
@@ -110,13 +110,7 @@ INSERT INTO `recipes` (`id`, `title`, `description`, `instructions`, `image`, `c
 (1, 'Олів\'є', 'Салат з картоплею, морквою і м\'ясом курки', '1. Відваріть картоплю і моркву. 2. Поріжте овочі і м\'ясо. 3. Змішайте всі інгредієнти з майонезом.', 'https://images.unian.net/photos/2018_12/thumb_files/1000_545_1544783934-3964.jpg', 5, 1, 4, 1, '2024-09-11 22:41:48', '2024-09-11 23:52:29'),
 (2, 'Борщ', 'Традиційний український борщ з буряком', '1. Відваріть буряк, капусту і картоплю. 2. Змішайте з бульйоном. 3. Додайте помідори і спеції.', 'https://images.unian.net/photos/2020_04/thumb_files/800_0_1588081977-7108.jpg?0.533115173094685', 4, 1, 1, 1, '2024-09-11 22:41:48', '2024-09-11 23:52:31'),
 (3, 'Котлети по-київськи', 'Смажені котлети з курячого м\'яса', '1. Приготуйте котлети, начинені вершковим маслом. 2. Обсмажте на сковороді.', 'https://rud.ua/uploads/under_recipe/02_600x300_5f686cb1bd6ca.jpg', 2, 2, 0, 1, '2024-09-11 22:41:48', '2024-09-11 23:00:24'),
-(4, 'Шоколадний торт', 'Смачний десерт з шоколадом', '1. Спечіть коржі. 2. Приготуйте шоколадний крем. 3. Складіть торт і прикрасьте.', 'https://rud.ua/uploads/under_recipe/maxresdefault%20(4).jpg', 3, 2, 0, 1, '2024-09-11 22:41:48', '2024-09-11 23:00:50'),
-(5, 'Солянка', 'Гострий суп з м\'ясом і оливками', '1. Обсмажте м\'ясо. 2. Додайте овочі та спеції. 3. Варіть до готовності.', NULL, 4, 1, 0, 1, '2024-09-11 22:41:48', '2024-09-11 23:52:59'),
-(6, 'Салат Цезар', 'Світовий салат з куркою та пармезаном', '1. Приготуйте курку. 2. Змішайте з листям салату та пармезаном. 3. Заправте соусом.', NULL, 5, 2, 0, 1, '2024-09-11 22:41:48', '2024-09-15 18:27:50'),
-(7, 'Паста Карбонара', 'Паста з беконом і яйцем', '1. Приготуйте пасту. 2. Обсмажте бекон. 3. Змішайте пасту з беконом та соусом.', NULL, 2, 2, 0, 1, '2024-09-11 22:41:48', '2024-09-15 18:27:53'),
-(8, 'Яблучний пиріг', 'Солодкий пиріг з яблуками', '1. Приготуйте тісто. 2. Накладіть начинку з яблук. 3. Спечіть до золотистого кольору.', NULL, 3, 1, 0, 1, '2024-09-11 22:41:48', '2024-09-15 18:27:55'),
-(9, 'Гречана каша', 'Смачна гречка з овочами', '1. Відваріть гречку. 2. Обсмажте овочі. 3. Змішайте разом.', NULL, 2, 1, 0, 1, '2024-09-11 22:41:48', '2024-09-15 18:27:57'),
-(10, 'Бабка картопляна', 'Запечена картопля з м\'ясом', '1. Наріжте картоплю. 2. Змішайте з м\'ясом і спеціями. 3. Запечіть до готовності.', NULL, 2, 2, 0, 1, '2024-09-11 22:41:48', '2024-09-15 18:27:59');
+(4, 'Шоколадний торт', 'Смачний десерт з шоколадом', '1. Спечіть коржі. 2. Приготуйте шоколадний крем. 3. Складіть торт і прикрасьте.', 'https://rud.ua/uploads/under_recipe/maxresdefault%20(4).jpg', 3, 2, 0, 1, '2024-09-11 22:41:48', '2024-09-11 23:00:50');
 
 -- --------------------------------------------------------
 
@@ -128,7 +122,7 @@ CREATE TABLE `recipe_ingredient` (
   `id` int NOT NULL,
   `recipe_id` int DEFAULT NULL,
   `ingredient_id` int DEFAULT NULL,
-  `quantity` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `quantity` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -158,28 +152,7 @@ INSERT INTO `recipe_ingredient` (`id`, `recipe_id`, `ingredient_id`, `quantity`,
 (124, 3, 7, '2 шт.', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
 (125, 3, 10, '50 мл', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
 (126, 4, 16, '200 г', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(127, 4, 10, '100 мл', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(128, 5, 5, '300 г', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(129, 5, 8, '1 шт.', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(130, 5, 9, '2 зуб.', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(131, 5, 10, '50 мл', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(132, 6, 5, '200 г', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(133, 6, 6, '50 г', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(134, 6, 8, '1 шт.', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(135, 6, 9, '1 зуб.', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(136, 6, 10, '50 мл', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(137, 7, 5, '150 г', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(138, 7, 7, '2 шт.', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(139, 7, 10, '30 мл', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(140, 8, 4, '3 шт.', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(141, 8, 6, '100 г', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(142, 8, 10, '50 мл', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(143, 9, 4, '200 г', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(144, 9, 3, '1 шт.', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(145, 9, 10, '20 мл', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(146, 10, 4, '4 шт.', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(147, 10, 5, '200 г', '2024-09-11 22:42:00', '2024-09-11 22:42:00'),
-(148, 10, 10, '50 мл', '2024-09-11 22:42:00', '2024-09-11 22:42:00');
+(127, 4, 10, '100 мл', '2024-09-11 22:42:00', '2024-09-11 22:42:00');
 
 -- --------------------------------------------------------
 
@@ -192,7 +165,7 @@ CREATE TABLE `reviews` (
   `recipe_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   `rating` int DEFAULT NULL,
-  `comment` text COLLATE utf8mb4_general_ci,
+  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -208,19 +181,7 @@ INSERT INTO `reviews` (`id`, `recipe_id`, `user_id`, `rating`, `comment`, `creat
 (5, 3, 1, 5, 'Котлети просто супер! Смачні та ніжні.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
 (6, 3, 2, 5, 'Чудовий рецепт, обов’язково спробую ще раз.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
 (7, 4, 1, 5, 'Торт неймовірно смачний, ідеально для свят.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(8, 4, 2, 4, 'Торт гарний, але можна покращити крем.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(9, 5, 1, 4, 'Солянка дуже смачна, але трішки гостра.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(10, 5, 2, 5, 'Найкраща солянка, яку я коли-небудь їв.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(11, 6, 1, 4, 'Салат Цезар смачний, але я б додав більше соусу.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(12, 6, 2, 5, 'Чудовий салат, ідеальний для легкого обіду.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(13, 7, 1, 4, 'Паста Карбонара смачна, але бекон можна було б зробити хрусткішим.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(14, 7, 2, 5, 'Чудова паста, ідеальний рецепт!', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(15, 8, 1, 5, 'Яблучний пиріг просто чудовий, ніжний і смачний.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(16, 8, 2, 4, 'Добрий пиріг, але начинка трохи кисла.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(17, 9, 1, 4, 'Гречана каша смачна, але можна було б додати більше спецій.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(18, 9, 2, 5, 'Проста і смачна каша, дуже подобається!', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(19, 10, 1, 5, 'Бабка картопляна просто супер! Дуже смачно.', '2024-09-11 22:43:04', '2024-09-11 22:43:04'),
-(20, 10, 2, 4, 'Добре, але я б додав трохи більше спецій.', '2024-09-11 22:43:04', '2024-09-11 22:43:04');
+(8, 4, 2, 4, 'Торт гарний, але можна покращити крем.', '2024-09-11 22:43:04', '2024-09-11 22:43:04');
 
 -- --------------------------------------------------------
 
@@ -230,9 +191,9 @@ INSERT INTO `reviews` (`id`, `recipe_id`, `user_id`, `rating`, `comment`, `creat
 
 CREATE TABLE `users` (
   `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -350,14 +311,14 @@ ALTER TABLE `recipes`
 -- Обмеження зовнішнього ключа таблиці `recipe_ingredient`
 --
 ALTER TABLE `recipe_ingredient`
-  ADD CONSTRAINT `recipe_ingredient_ibfk_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`),
-  ADD CONSTRAINT `recipe_ingredient_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`id`);
+  ADD CONSTRAINT `recipe_ingredient_ibfk_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `recipe_ingredient_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Обмеження зовнішнього ключа таблиці `reviews`
 --
 ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`),
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 

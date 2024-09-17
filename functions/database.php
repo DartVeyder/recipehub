@@ -57,7 +57,7 @@ function update($table, $data, $conditions) {
     $stmt = $pdo->prepare($sql);
     return $stmt->execute(array_merge(array_values($data), array_values($conditions)));
 }
-function delete($table, $conditions) {
+function dbDelete($table, $conditions) {
     $pdo = getConnection();
     if ($pdo === null) {
         return false;
