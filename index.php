@@ -1,4 +1,7 @@
-
+<?php
+include_once "functions/database.php";
+include_once "functions/recipe.php";
+include_once "router.php" ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,8 +17,41 @@
 
 <div class="container">
     <div class="row">
-        <?
-        include_once "router.php" ?>
+        <?php
+        $receipes = recipeList();
+        echo '<table class="table">
+                      <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Назва</th>
+                            <th>Опис</th>
+                            <th>Інструкції</th>
+                            <th>Категорія ID</th>
+                            <th>Користувач ID</th>
+                            <th>Перегляди</th>
+                            <th>Активний</th>
+                            <th>Дата створення</th>
+                            <th>Дата оновлення</th>
+                        </tr>
+                      </thead>
+                     <tbody>';
+        foreach ($receipes as $recipe){
+
+            echo "<tr>
+                <td>{$recipe['id']}</td>
+                <td>{$recipe['title']}</td>
+                <td>{$recipe['description']}</td>
+                <td>{$recipe['instructions']}</td>
+                <td>{$recipe['category_id']}</td>
+                <td>{$recipe['user_id']}</td>
+                <td>{$recipe['views']}</td>
+                <td>" . ($recipe['active'] ? 'Так' : 'Ні') . "</td>
+                <td>{$recipe['created_at']}</td>
+                <td>{$recipe['updated_at']}</td>
+              </tr>";
+        }
+        echo '</tbody>
+                    </table>';
         ?>
 
 
