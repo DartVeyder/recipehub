@@ -1,4 +1,6 @@
-<?php include_once "functions/recipe.php";
+<?php
+include_once "functions/database.php";
+include_once "functions/recipe.php";
 if(empty($_GET['id'])){
     echo "Not id";
     exit;

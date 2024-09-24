@@ -1,5 +1,6 @@
 
 <?php
+include_once "functions/database.php";
 include_once "functions/recipe.php";
 include_once "router.php" ?>
 <!doctype html>
@@ -17,12 +18,68 @@ include_once "router.php" ?>
 <a class="add-button"><i class="fas fa-plus"></i></a>
 
 <div class="container">
+
     <div class="row">
-        <?
+        <?php
+
+        // додавання рецепту
+//        create(
+//            'Грецький салат',
+//            'Смачний салат із свіжих овочів та сиру фета.',
+//            '1. Нарізати овочі. 2. Додати сир та оливки. 3. Перемішати.',
+//            1,  // ID категорії 'Салати'
+//            1   // ID користувача 'Іван Іваненко'
+//        );
+        // Дані для оновлення рецепту
+        $data = [
+            'title' => ' грецький салат 2',
+            'image' => 'https://cdn.abo.media/upload/article/res/770-430/l6e9m4nw7nojas8qooka.jpg',
+            'category_id' => 5,  // ID категорії 'Салати'
+        ];
+
+
+        // Виклик методу update для оновлення рецепту
+        $updated = update('recipes', $data, [ 'id' => 13  ]// ID рецепту, який потрібно оновити
+        );
+
         $receipes = recipeList();
         foreach ($receipes as $receipe){
             $created_at = new DateTime($receipe['created_at']);
-             include "views/recipe/card.php";
+            echo '<div class="col-12 col-sm-8 col-md-6 col-lg-4 mb-4">
+                        <div class="card" >
+                            <img class="card-img-top"  style="height: 16rem;" src="'. ($receipe['image'] ?$receipe['image']: 'assets/images/none_image.jpg') .'" alt="'.$receipe['title'].'">
+                         
+                            <div class="card-img-overlay" style="right: auto;bottom: auto;    
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                    }">
+                                <a href="#" class="btn btn-light btn-sm">'.$receipe['category_name'].'</a>
+                                  <div class="action">
+                             <a href="#" class="fas fa-edit text-info "></a> 
+                             <a href="?function=recipe&action=delete&id='.$receipe['id'].'" class="fas fa-trash-alt text-danger ml-3"></a> 
+                    </div>
+                               
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title"> '.$receipe['title'].'</h4>
+                    
+                                <p class="card-text">'.$receipe['description'].'</p>
+                                <a href="/recipe.php?id='.$receipe['id'].'" class="btn btn-info">Читати</a>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                                <div class="views">'.$created_at->format('d.m.Y, H:i').'
+                                </div>
+                                <div class="stats">
+                                    <i class="far fa-eye"></i> '.$receipe['views'].'
+                                    <i class="far fa-comment"></i> '.$receipe['total_reviews'].'
+                                </div>
+                    
+                            </div>
+                        </div>
+                    
+                    </div>';
         }
         ?>
 
