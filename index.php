@@ -18,6 +18,26 @@ include_once "router.php" ?>
 <div class="container">
     <div class="row">
         <?php
+        // додавання рецепту
+//                 create(
+//                    'Грецький салат',
+//                    'Смачний салат із свіжих овочів та сиру фета.',
+//                    '1. Нарізати овочі. 2. Додати сир та оливки. 3. Перемішати.',
+//                    1,  // ID категорії 'Салати'
+//                     1   // ID користувача 'Іван Іваненко'
+//                );
+        // Дані для оновлення рецепту
+//                $data = [
+//                    'title' => ' грецький салат 2',
+//                    'image' => 'https://cdn.abo.media/upload/article/res/770-430/l6e9m4nw7nojas8qooka.jpg',
+//                    'category_id' => 5,  // ID категорії 'Салати'
+//                ];
+
+
+        //Виклик методу update для оновлення рецепту
+         $updated = update('recipes', $data, [ 'id' => 16  ]// ID рецепту, який потрібно оновити
+         );
+
         $receipes = recipeList();
         echo '<table class="table">
                       <thead>
@@ -26,9 +46,10 @@ include_once "router.php" ?>
                             <th>Назва</th>
                             <th>Опис</th>
                             <th>Інструкції</th>
-                            <th>Категорія ID</th>
+                            <th>Категорія</th>
                             <th>Користувач ID</th>
                             <th>Перегляди</th>
+                             <th>Відгуків</th>
                             <th>Активний</th>
                             <th>Дата створення</th>
                             <th>Дата оновлення</th>
@@ -42,9 +63,10 @@ include_once "router.php" ?>
                 <td>{$recipe['title']}</td>
                 <td>{$recipe['description']}</td>
                 <td>{$recipe['instructions']}</td>
-                <td>{$recipe['category_id']}</td>
+                <td>{$recipe['category_name']}</td>
                 <td>{$recipe['user_id']}</td>
                 <td>{$recipe['views']}</td>
+                <td>{$recipe['total_reviews']}</td>
                 <td>" . ($recipe['active'] ? 'Так' : 'Ні') . "</td>
                 <td>{$recipe['created_at']}</td>
                 <td>{$recipe['updated_at']}</td>

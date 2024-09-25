@@ -22,25 +22,6 @@ include_once "router.php" ?>
     <div class="row">
         <?php
 
-        // додавання рецепту
-//        create(
-//            'Грецький салат',
-//            'Смачний салат із свіжих овочів та сиру фета.',
-//            '1. Нарізати овочі. 2. Додати сир та оливки. 3. Перемішати.',
-//            1,  // ID категорії 'Салати'
-//            1   // ID користувача 'Іван Іваненко'
-//        );
-        // Дані для оновлення рецепту
-//        $data = [
-//            'title' => ' грецький салат 2',
-//            'image' => 'https://cdn.abo.media/upload/article/res/770-430/l6e9m4nw7nojas8qooka.jpg',
-//            'category_id' => 5,  // ID категорії 'Салати'
-//        ];
-
-
-        // Виклик методу update для оновлення рецепту
-       // $updated = update('recipes', $data, [ 'id' => 13  ]// ID рецепту, який потрібно оновити
-       // );
 
         $receipes = recipeList();
         foreach ($receipes as $receipe){
