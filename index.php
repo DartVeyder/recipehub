@@ -35,8 +35,8 @@ include_once "router.php" ?>
 
 
         //Виклик методу update для оновлення рецепту
-         $updated = update('recipes', $data, [ 'id' => 16  ]// ID рецепту, який потрібно оновити
-         );
+//         $updated = update('recipes', $data, [ 'id' => 16  ]// ID рецепту, який потрібно оновити
+//         );
 
         $receipes = recipeList();
         echo '<table class="table">
